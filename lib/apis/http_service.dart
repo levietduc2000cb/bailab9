@@ -37,21 +37,13 @@ class HttpService {
       "username": loginRequest.username,
       "password": loginRequest.password
     };
-
-    try {
       final response = await http.post(baseUrl, body: body);
-
-      // Success
       if (response.statusCode == 200) {
-        // If the server did return a 200 OK response,
-        // then parse the JSON.
         return LoginResponse.fromJson(jsonDecode(response.body));
       }
-    } catch (e) {
-      return null;
-    }
-
-    return null;
+      else{
+        return null;
+      }
   }
 
   static Future<User?> getCurrentAuthUser(String token) async {
